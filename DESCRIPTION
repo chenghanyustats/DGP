@@ -1,0 +1,10 @@
+Package: dgp
+Type: Package
+Title: Estimating Posterior Distribution of Stationary Points via Derivative Gaussian Processes
+Version: 0.1.0
+Author: Cheng-Han Yu
+Maintainer: Cheng-Han Yu <chenghanyustats@gmail.com>
+Description: Functions for estimating posterior distribution of stationary points via derivative Gaussian processes
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
