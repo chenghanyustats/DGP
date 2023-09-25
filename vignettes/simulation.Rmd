@@ -1,6 +1,6 @@
 ---
 title: "Estimating local extrema using derivative Gaussian processes"
-output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
 vignette: >
   %\VignetteIndexEntry{Estimating local extrema using derivative Gaussian processes}
   %\VignetteEngine{knitr::rmarkdown}
@@ -61,7 +61,7 @@ type1err <- 0.05
 ```
 
 
-Then estimate $\sigma$, and the hyperpameters $\tau$ and lengthscale $\h$ in the kernel by maximizing the marginal log likelihood.
+Then estimate $\sigma$, and the hyperpameters $\tau$ and lengthscale $h$ in the kernel by maximizing the marginal log likelihood.
 ```{r}
 library(parallel)
 library(doParallel)

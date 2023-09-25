@@ -1,6 +1,6 @@
 ---
 title: "ERP Data Analysis"
-output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
 vignette: >
   %\VignetteIndexEntry{ERP Data Analysis}
   %\VignetteEngine{knitr::rmarkdown}
