@@ -1,6 +1,6 @@
 ################################################################################
 # GP with Derivative Information Simulation Study: Data Generating             #                                                              #
-# "./data/GenSimData.R"                                               #
+# "./data/GenSimData.R"                                                        #
 # Cheng-Han Yu                                                                 #
 ################################################################################
 # library(here)
@@ -10,7 +10,7 @@
 YY <- list()
 
 ## size
-n <- 100
+n <- 100  # 500 and 1000
 
 ## number of replicate
 no_data <- 100
