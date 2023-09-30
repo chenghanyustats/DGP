@@ -1,6 +1,6 @@
 # DGP-theory
 
-The goal of the `dgp` package is computing the posterior density of local extrema shown in the paper [Li et al. (2023). Semiparametric Bayesian inference for local extrema of functions in the presence of noise](https://arxiv.org/abs/2103.10606)
+The goal of the `dgp` package is computing the posterior density of local extrema shown in the paper ``Semiparametric Bayesian inference for local extrema of functions in the presence of noise".
 
 
 ## Installation and Usage

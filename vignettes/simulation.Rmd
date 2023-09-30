@@ -7,7 +7,7 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-In this vignette, we provide worked examples on simulated data to demonstrates how to use the package `dgp` to compute the posterior density of local extrama using derivative Gaussian processes, which is discussed in [Li et al. (2023). Semiparametric Bayesian inference for local extrema of functions in the presence of noise](https://arxiv.org/abs/2103.10606).
+In this vignette, we provide worked examples on simulated data to demonstrates how to use the package `dgp` to compute the posterior density of local extrama using derivative Gaussian processes, which is discussed in the paper [``Semiparametric Bayesian inference for local extrema of functions in the presence of noise"](https://arxiv.org/abs/2103.10606).
 
 ## Required Packages
 
@@ -58,7 +58,7 @@ source("../data-raw/gen_sim_data.R")
 
 ## Simulation study
 
-Here we show how to use the functions in the `dgp` package to implement the method proposed in Li et al. (2023). 
+Here we show how to use the functions in the `dgp` package to implement the method proposed in the paper.
 
 <!-- To implement STS [(Kovac, 2007)](http://cran.nexr.com/web/packages/ftnonpar/index.html), and NKS (Song et. al, 2006) method, one requires the `ftnonpar` and `KernSmooth` packages. -->
 
