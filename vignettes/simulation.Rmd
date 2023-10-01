@@ -7,7 +7,7 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-In this vignette, we provide worked examples on simulated data to demonstrates how to use the package `dgp` to compute the posterior density of local extrama using derivative Gaussian processes, which is discussed in the paper [``Semiparametric Bayesian inference for local extrema of functions in the presence of noise"](https://arxiv.org/abs/2103.10606).
+In this vignette, we provide worked examples on simulated data to demonstrates how to use the package `dgp` to compute the posterior density of local extrama using derivative Gaussian processes, which is discussed in the paper ``Semiparametric Bayesian inference for local extrema of functions in the presence of noise".
 
 ## Required Packages
 
@@ -402,7 +402,7 @@ c(sqrt(mean((nks_mat[, 1] - cri_pts[1]) ^ 2)),
 
 
 
-## Missing local extrema
+### Missing local extrema
 
 ```{r}
 
@@ -436,5 +436,31 @@ multi_count_sts
 ## NKS
 # -----------------
 multi_count_nks
+```
+
+
+## Coverage
+
+The coverage can be computed using the main functions `get_cover()` and `get_cover_all()`.
+
+```{r}
+#| cache: true
+#| eval: true
+
+## This part takes about 10 minutes!
+cl <- makeCluster(10)
+registerDoParallel(cl)
+n_new <- 1000
+x_new <- seq(0, 1, length.out = n_new + 2)[2:n_new + 1]
+n <- 1000
+x <- seq(0, 1, length.out = n)
+y0 <- sapply(x, f0)
+cover_mat <- foreach(j = 1:100, .combine = 'rbind') %dopar% {
+        set.seed(j)
+        y <- y0 + sig * rnorm(n)
+        return(dgp::get_cover_all(x, y, n, x_new, cri_pts))
+}
+stopCluster(cl)
+colMeans(cover_mat[cover_mat[, 1] == 3, ])
 ```
 
