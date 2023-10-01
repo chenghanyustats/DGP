@@ -39,7 +39,7 @@ The package provide a vignette `simulation.Rmd`(`simulation.pdf`) for implementi
 
 
 
-### ERP Data Analysis
+### Event-Related Potential Data Analysis
 
-The package provide a vignette `erpdata.Rmd`(`erpdata.pdf`) for implementing the proposed method and conducting a simulation study. The raw ERP data is saved in `./data/Raw_ERP.csv`.
+The package provide a vignette `erpdata.Rmd`(`erpdata.pdf`) for implementing the proposed method in a real data application to event-related potential (ERP) analysis. The raw ERP data is saved in `./data/Raw_ERP.csv`.
 
