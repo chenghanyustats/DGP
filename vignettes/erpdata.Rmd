@@ -160,7 +160,7 @@ To replicate the result of the grand ERP waveworm averaged over 72 trials, simpl
 #| eval: true
 
 ################################################
-### average across all trials
+### average across all trials (Figure 5 in the paper)
 ################################################
 ## ERP waveform averaged over 72 trials
 erp <- apply(erp_data, 2, mean)
@@ -214,5 +214,5 @@ plot_pred_gp_f_y(x = x[bd], y = erp[bd],
                  xlim = c(x_a, x_b), is.der.line = FALSE, 
                  is.true.fcn = FALSE, cex = 0.5, 
                  plot.type = "p", col.poly = rgb(0, 0, 1, 0.5), 
-                 pred_lwd = 2, title = "ERP curve fitting (avged across 72 trials)", is.legend = FALSE)
+                 pred_lwd = 2, title = "Figure 5: ERP curve fitting (avged across 72 trials)", is.legend = FALSE)
 ```
