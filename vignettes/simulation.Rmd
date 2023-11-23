@@ -452,7 +452,7 @@ cl <- makeCluster(10)
 registerDoParallel(cl)
 n_new <- 1000
 x_new <- seq(0, 1, length.out = n_new + 2)[2:n_new + 1]
-n <- 1000
+n <- 100
 x <- seq(0, 1, length.out = n)
 y0 <- sapply(x, f0)
 cover_mat <- foreach(j = 1:100, .combine = 'rbind') %dopar% {

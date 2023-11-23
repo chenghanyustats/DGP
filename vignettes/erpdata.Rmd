@@ -154,3 +154,65 @@ plot(grid_t, post_prob33, ylab = "", xlab = "t", type = 'l',
 
 
 To replicate the result of the grand ERP waveworm averaged over 72 trials, simply replace `erp <- apply(as.matrix(erp_data)[(2*k-1):(2*k), ], 2, mean)` with `erp <- apply(erp_data, 2, mean)`, and run the code.
+
+
+```{r}
+#| eval: true
+
+################################################
+### average across all trials
+################################################
+## ERP waveform averaged over 72 trials
+erp <- apply(erp_data, 2, mean)
+
+## Optimizing hyperparameters
+gp_res <- Rsolnp::solnp(pars = c(.5, .5, .5), fun = log_mar_lik_gp,
+                        LB = c(0.0001, 0.0001, 0.0001),
+                        UB = c(1 / 0.0001, 1 / 0.0001, 1 / 0.0001),
+                        control = list(TOL = 1e-5, trace = 0),
+                        y = erp[bd], H0 = H0)
+
+n <- length(x[bd])
+lam <- gp_res$par[1] ^ 2 / (n * gp_res$par[2] ^ 2)
+Kff <- se_ker(H0 = H0, tau = 1, h = gp_res$par[3])
+A <- Kff + diag((n * lam), n)
+
+## Posterior distribution of local extrema
+for (i in 1:length(grid_t)) {
+    log_post[i] <- log_post_t_theory(t = grid_t[i], y = erp[bd], x = x[bd],
+                                     Kff = Kff, A = A, lambda = lam, 
+                                     h = gp_res$par[3], sig2 = gp_res$par[1] ^ 2,
+                                     shape1 = 1, shape2 = 1,
+                                     a = x_a, b = x_b)
+    log_post33[i] <- log_post_t_theory(t = grid_t[i], y = erp[bd], x = x[bd],
+                                       Kff = Kff, A = A, lambda = lam, 
+                                       h = gp_res$par[3], sig2 = gp_res$par[1] ^ 2,
+                                       shape1 = 3, shape2 = 3,
+                                       a = x_a, b = x_b)
+}
+post_prob <- exp(log_post - max(log_post))
+post_prob33 <- exp(log_post33 - max(log_post33))
+```
+
+To obtain the fitted curve and uncertainty bands, we can use the function `get_pred_ci_gp()`.
+
+```{r}
+pred <- get_pred_ci_gp(eb_par = gp_res$par, x = x[bd], x_test = x_test, 
+                       y = erp[bd])
+```
+
+The function `plot_pred_gp_f_y()` plots the fitted waveform as well as the uncertainty intervals.
+
+```{r}
+## Curve fitting plotting
+plot_pred_gp_f_y(x = x[bd], y = erp[bd], 
+                 x_test = x_test,
+                 mu_test = pred$mu_test,
+                 CI_Low_f = pred$ci_low,
+                 CI_High_f = pred$ci_high, 
+                 ylim = range(erp[bd]),
+                 xlim = c(x_a, x_b), is.der.line = FALSE, 
+                 is.true.fcn = FALSE, cex = 0.5, 
+                 plot.type = "p", col.poly = rgb(0, 0, 1, 0.5), 
+                 pred_lwd = 2, title = "ERP curve fitting (avged across 72 trials)", is.legend = FALSE)
+```
